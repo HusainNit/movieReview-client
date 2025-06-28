@@ -4,17 +4,26 @@
 }
 
 header {
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  /* padding: 20px 0; */
   background-color: gray;
 }
 
 a {
-  margin: 0 20px ;
+  margin: 0 20px;
 }
 
+.logo {
+  max-width: 40px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 button {
   padding: 0.5em 1.2em;
@@ -32,7 +41,7 @@ button:hover {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 1em;
   padding: 0.5em;
 }
@@ -71,4 +80,12 @@ button:hover {
 
 .details img {
   width: 100%;
+}
+
+.alone {
+  max-width: 400px;
+}
+
+main {
+  margin: 0 120px;
 }

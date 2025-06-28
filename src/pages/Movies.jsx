@@ -1,4 +1,3 @@
-import { POSTER_PATH } from "../globals";
 import { useState, useEffect } from "react";
 import { GetMovies } from "../services/MoviesGetter";
 import { Route, Routes, useNavigate } from "react-router-dom";
