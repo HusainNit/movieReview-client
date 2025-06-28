@@ -7,6 +7,7 @@ import GetMovie from "../components/GetMovie";
 const Movies = () => {
   let navigate = useNavigate();
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
 
   const moreData = (id) => {
     navigate(`/movies/${id}`);
@@ -18,25 +19,39 @@ const Movies = () => {
 
   useEffect(() => {
     const handleMovies = async () => {
-      const data = await GetMovies();
+      const data = await GetMovies(page);
       setMovies(data);
     };
     handleMovies();
-  }, []);
+  }, [page]);
 
   return (
-    <div className="grid">
-      <Routes>
-        <Route
-          path="/"
-          element={<AllMovies movies={movies} moreData={moreData} />}
-        />
-        <Route
-          path="/:id"
-          element={<GetMovie movies={movies} unSelect={unSelect} />}
-        />
-      </Routes>
-    </div>
+    <>
+      <div className="grid">
+        <Routes>
+          <Route
+            path="/"
+            element={<AllMovies movies={movies} moreData={moreData} />}
+          />
+          <Route
+            path="/:id"
+            element={<GetMovie movies={movies} unSelect={unSelect} />}
+          />
+        </Routes>
+      </div>
+      {window.location.pathname === "/movies" && (
+        <div className="pagination">
+          <button
+            onClick={() => setPage((p) => Math.max(p - 1, 1))}
+            disabled={page === 1}
+          >
+            ◀
+          </button>
+          <span className="counter">Page {page}</span>
+          <button onClick={() => setPage((p) => p + 1)}>▶</button>
+        </div>
+      )}
+    </>
   );
 };
 
