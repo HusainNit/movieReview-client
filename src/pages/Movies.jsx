@@ -8,7 +8,7 @@ const Movies = () => {
 
   const moreData = (movie) => {
     setSelectedMovie(movie);
-    // console.log(movie);
+     console.log(movie);
   };
 
   const unSelect = () => {
@@ -18,7 +18,8 @@ const Movies = () => {
   useEffect(() => {
     const handleMovies = async () => {
       const data = await GetMovies();
-      setMovies(data);
+      console.log(data);
+      setMovies(Array.isArray(data.allMovies) ? data.allMovies : []);
     };
     handleMovies();
   }, []);
