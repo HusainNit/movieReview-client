@@ -135,7 +135,17 @@ button:hover {
 
   flex-direction: column; /* Key! Stack top and bottom rows */
   gap: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
+}
+
+.labelStar {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.commentLabel {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 input {
@@ -144,6 +154,17 @@ input {
   background-color: #5f5c5c;
   padding: 10px 10px;
   color: white;
+}
+
+.commentINput {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.sub {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .counter {
@@ -389,6 +410,10 @@ footer {
 
   .comment {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .Crev {

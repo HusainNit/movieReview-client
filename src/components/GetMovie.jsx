@@ -1,13 +1,29 @@
 import { POSTER_PATH } from "../globals";
 import { useNavigate, useParams } from "react-router-dom";
-import { Like } from "../services/Like";
+import { Review } from "../services/Review";
 import { useState } from "react";
 
 const GetMovie = ({ movies, unSelect }) => {
   let navigate = useNavigate();
   const { id } = useParams();
   const movie = movies.find((m) => m.id === Number(id));
+
   const [rev, setRev] = useState(false);
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+  const [rating, setRating] = useState(null);
+  const [comment, setComment] = useState("");
+
+  const toggleLike = () => {
+    setLike(!like);
+    if (!like && dislike) setDislike(false);
+  };
+
+  const toggleDislike = () => {
+    setDislike(!dislike);
+    if (!dislike && like) setLike(false);
+  };
 
   return (
     <>
@@ -81,62 +97,112 @@ const GetMovie = ({ movies, unSelect }) => {
                 <div className="Crev">
                   <div className="userFunctions">
                     <div className="rate">
-                      <h3>Rate:</h3>
-                      <form class="star-rating">
+                      <label htmlFor="stars" className="labelStar">
+                        Rating:
+                      </label>
+                      <br />
+                      <form className="star-rating" id="stars">
                         <input
                           type="radio"
                           id="star5"
                           name="rating"
                           value="5"
+                          onChange={(e) => setRating(e.target.value)}
                         />
-                        <label for="star5" title="5 stars"></label>
+                        <label htmlFor="star5" title="5 stars"></label>
 
                         <input
                           type="radio"
                           id="star4"
                           name="rating"
                           value="4"
+                          onChange={(e) => setRating(e.target.value)}
                         />
-                        <label for="star4" title="4 stars"></label>
+                        <label htmlFor="star4" title="4 stars"></label>
 
                         <input
                           type="radio"
                           id="star3"
                           name="rating"
                           value="3"
+                          onChange={(e) => setRating(e.target.value)}
                         />
-                        <label for="star3" title="3 stars"></label>
+                        <label htmlFor="star3" title="3 stars"></label>
 
                         <input
                           type="radio"
                           id="star2"
                           name="rating"
                           value="2"
+                          onChange={(e) => setRating(e.target.value)}
                         />
-                        <label for="star2" title="2 stars"></label>
+                        <label htmlFor="star2" title="2 stars"></label>
 
                         <input
                           type="radio"
                           id="star1"
                           name="rating"
                           value="1"
+                          onChange={(e) => setRating(e.target.value)}
                         />
-                        <label for="star1" title="1 star"></label>
+                        <label htmlFor="star1" title="1 star"></label>
                       </form>
                     </div>
                     <div className="functions">
-                      <button className="func" onClick={() => Like(id)}>
-                        👍
+                      <button
+                        className="func"
+                        onClick={toggleLike}
+                        title="Like"
+                      >
+                        {like ? "👍 Liked" : "👍"}
                       </button>
-                      <button className="func">👎</button>
-                      <button className="func">❤️</button>
+                      <button
+                        className="func"
+                        onClick={toggleDislike}
+                        title="DisLike"
+                      >
+                        {dislike ? "👎 Disliked" : "👎"}
+                      </button>
+                      <button
+                        className="func"
+                        title="Favorites"
+                        onClick={() => {
+                          setFavorite(!favorite);
+                        }}
+                      >
+                        {favorite ? "❤️ Favorited" : "❤️"}
+                      </button>
                     </div>
                   </div>
 
                   <div className="comment">
-                    <h1>comment</h1>
-
-                    <input type="text" placeholder="write your comment here" />
+                    <label htmlFor="commentLabel" className="commentLabel">
+                      comment
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="write your comment here"
+                      className="commentINput"
+                      id="commentLabel"
+                      onChange={(e) => setComment(e.target.value)}
+                    />
+                  </div>
+                  <div className="sub">
+                    <button
+                      className="func"
+                      onClick={() => {
+                        Review({
+                          movieId: id,
+                          like: like,
+                          dislike: dislike,
+                          favorite: favorite,
+                          rating: rating,
+                          comment: comment,
+                        });
+                      }}
+                    >
+                      submit
+                    </button>
                   </div>
                 </div>
               ) : null}
