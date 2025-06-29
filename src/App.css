@@ -8,7 +8,7 @@ header {
   display: flex;
   justify-content: space-between;
   /* padding: 20px 0; */
-  background-color: gray;
+  background-color: #424242;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -23,7 +23,7 @@ a {
 }
 
 a:hover {
-  color: yellow;
+  color: #1e88e5;
 }
 
 .logo {
@@ -42,7 +42,7 @@ button {
   border: none;
   cursor: pointer;
   background-color: #64b5f6;
-  transition: all 0.2s ease;
+  transition: background-color 0.5s ease-in;
   font-weight: 700;
 }
 
@@ -70,7 +70,7 @@ button:hover {
 }
 
 .all:hover {
-  border: yellow 3px dotted;
+  border: #1e88e5 3px dotted;
   cursor: pointer;
 }
 
@@ -135,7 +135,17 @@ button:hover {
 
   flex-direction: column; /* Key! Stack top and bottom rows */
   gap: 20px;
-  padding-bottom: 200px;
+  padding-bottom: 30px;
+}
+
+.labelStar {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.commentLabel {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
 input {
@@ -144,6 +154,17 @@ input {
   background-color: #5f5c5c;
   padding: 10px 10px;
   color: white;
+}
+
+.commentINput {
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.sub {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .counter {
@@ -162,6 +183,85 @@ input::placeholder {
   gap: 20px;
 }
 
+.bottom {
+  width: 100%;
+  display: flex;
+}
+
+.createRev {
+  margin: 0 20px 0 20px;
+  padding: 20px;
+}
+
+.rightRev {
+  flex: 2;
+}
+
+.leftRev {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.review:first-child {
+  margin-bottom: 20px;
+}
+
+.func {
+  margin-right: 20px;
+  font-size: larger;
+  margin-bottom: 20px;
+}
+
+.comment {
+  margin-right: 20px;
+}
+
+.userFunctions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.star-rating {
+  direction: rtl;
+  display: inline-flex;
+  font-size: 2rem;
+  position: relative;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  cursor: pointer;
+  color: #ddd;
+  position: relative;
+  z-index: 1;
+}
+
+.star-rating label:before {
+  content: "★";
+  position: relative;
+  z-index: 2;
+}
+
+.star-rating input:checked ~ label {
+  color: #f5c518;
+}
+
+.star-rating .half:before {
+  content: "★";
+  color: #f5c518;
+  position: absolute;
+  width: 50%;
+  overflow: hidden;
+  z-index: 2;
+}
+
 /* 
 .userFunctions {
   flex: 0 0 100%;
@@ -174,7 +274,7 @@ input::placeholder {
 /* margin-top: 20px; optional spacing */
 /* } */
 
-.comment {
+/* .comment {
   flex: 2;
   margin: 0 20px 0 20px;
 }
@@ -189,7 +289,7 @@ input::placeholder {
 
 .func {
   margin-bottom: 20px;
-}
+} */
 
 hr {
   background-color: white;
@@ -243,7 +343,7 @@ span {
 }
 
 .txt:hover {
-  color: yellow;
+  color: #1e88e5;
 }
 
 .info {
@@ -277,7 +377,7 @@ main {
 footer {
   width: 100%;
   padding: 50px 0;
-  background-color: gray;
+  background-color: #424242;
   text-align: center;
 }
 
@@ -292,7 +392,7 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-width: 500px;
+    width: 100%;
   }
 
   hr {
@@ -308,24 +408,51 @@ footer {
     min-width: 100px;
   }
 
-  .bottom {
-    display: flex;
-    justify-content: center;
-  }
   .comment {
     width: 100%;
-    flex: 0;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .userFunctions {
+  .Crev {
     width: 100%;
-    flex-direction: row;
-    gap: 30px;
-    margin: 0;
   }
 
   input {
     width: 80%;
+  }
+
+  .rightRev {
+    width: 100%;
+  }
+
+  .userFunctions {
+    margin-bottom: 40px;
+    margin: 0 0 50px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .func {
+    padding: 20px 30px;
+  }
+
+  .review:nth-child(2) {
+    margin-bottom: 40px;
+  }
+
+  .userFunctions {
+    flex-direction: column;
+  }
+
+  .star-rating {
+    margin-bottom: 50px;
+  }
+
+  .star-rating {
+    font-size: 3rem;
   }
 }
