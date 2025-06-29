@@ -4,7 +4,7 @@ export const GetMovies = async () => {
   try {
     const res = await Client.get("/movies");
 
-    return res.data;
+    return res.data.allMovies;
   } catch (error) {
     console.error("Error in GetMovies:", error);
     throw error;
