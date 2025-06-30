@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { RegisterUser } from "../services/Auth";
 
 const Register = () => {
@@ -30,10 +30,15 @@ const Register = () => {
   };
 
   return (
-    <div className="col register">
-      <form onSubmit={handleSubmit}>
+    <div className="register">
+      <label htmlFor="col" className="registerLable">
+        Register
+      </label>
+      <form onSubmit={handleSubmit} className="col" id="col">
         <div className="input-wrapper">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" className="titleFiled">
+            Name
+          </label>
           <input
             onChange={handleChange}
             id="name"
@@ -42,10 +47,13 @@ const Register = () => {
             value={formValues.name}
             required
             autoComplete="name"
+            className="nameReg"
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="titleFiled">
+            Email
+          </label>
           <input
             onChange={handleChange}
             id="email"
@@ -54,20 +62,26 @@ const Register = () => {
             value={formValues.email}
             required
             autoComplete="email"
+            className="emailReg"
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="titleFiled">
+            Password
+          </label>
           <input
             onChange={handleChange}
             type="password"
             id="password"
             value={formValues.password}
             required
+            className="passReg"
           />
         </div>
         <div className="input-wrapper">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword" className="titleFiled">
+            Confirm Password
+          </label>
           <input
             onChange={handleChange}
             type="password"
@@ -76,16 +90,24 @@ const Register = () => {
             required
           />
         </div>
-        <button
-          disabled={
-            !formValues.email ||
-            (!formValues.password &&
-              formValues.password === formValues.confirmPassword)
-          }
-        >
-          Register
-        </button>
+        <div className="RegbtnC">
+          <button className="Regbtn"
+            disabled={
+              !formValues.email ||
+              (!formValues.password &&
+                formValues.password === formValues.confirmPassword)
+            }
+          >
+            Register
+          </button>
+        </div>
       </form>
+      <div className="linkLoginC">
+        <label htmlFor="linkReg" className="labsign">Already have an Account?</label>
+         <Link to="/signin" id="linkReg" className="linkReg">
+        sign In
+      </Link>
+      </div>
     </div>
   );
 };
