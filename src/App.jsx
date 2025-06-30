@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn";
 import Search from "./pages/Search";
 import Nav from "./components/Nav";
 import Movies from "./pages/Movies";
+import axios from 'axios'
 import { GetMovies } from "./services/MoviesGetter";
 import { CheckSession } from "./services/Auth";
 import Footer from "./components/Footer";
