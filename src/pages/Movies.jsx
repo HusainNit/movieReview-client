@@ -1,20 +1,25 @@
-import { POSTER_PATH } from "../globals";
 import { useState, useEffect } from "react";
 import { GetMovies } from "../services/MoviesGetter";
+
 import { addFavorite } from '../services/favoriteApi';
 
 
-const Movies = () => {
-  const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+import { Route, Routes, useNavigate } from "react-router-dom";
+import AllMovies from "../components/AllMovies";
+import GetMovie from "../components/GetMovie";
 
-  const moreData = (movie) => {
-    setSelectedMovie(movie);
-    // console.log(movie);
+
+const Movies = () => {
+  let navigate = useNavigate();
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
+
+  const moreData = (id) => {
+    navigate(`/movies/${id}`);
   };
 
   const unSelect = () => {
-    setSelectedMovie(null);
+    navigate("/movies");
   };
 
   const handleAddToFavorites = async (movie) => {
@@ -41,45 +46,39 @@ const Movies = () => {
 
   useEffect(() => {
     const handleMovies = async () => {
-      const data = await GetMovies();
+      const data = await GetMovies(page);
       setMovies(data);
     };
     handleMovies();
-  }, []);
+  }, [page]);
 
   return (
-    <div className="grid">
-      {selectedMovie ? (
-        <div className="card alone">
-          <img
-            src={`${POSTER_PATH}${selectedMovie.backdrop_path}`}
-            alt="poster"
+    <>
+      <div className="grid">
+        <Routes>
+          <Route
+            path="/"
+            element={<AllMovies movies={movies} moreData={moreData} />}
           />
-          <h3>{selectedMovie.title}</h3>
-          <button onClick={() => unSelect()}>unSelect</button>
-          <p>
-            adult:
-            {selectedMovie.adult ? <small>true</small> : <small>false</small>}
-            <br />
-            popularity: {selectedMovie.popularity}
-            <br />
-            release_date: {selectedMovie.release_date}
-            <br />
-            vote_average: {selectedMovie.vote_average}
-            <br />
-            vote_count: {selectedMovie.vote_count}
-          </p>
+          <Route
+            path="/:id"
+            element={<GetMovie movies={movies} unSelect={unSelect} />}
+          />
+        </Routes>
+      </div>
+      {window.location.pathname === "/movies" && (
+        <div className="pagination">
+          <button
+            onClick={() => setPage((p) => Math.max(p - 1, 1))}
+            disabled={page === 1}
+          >
+            ◀
+          </button>
+          <span className="counter">Page {page}</span>
+          <button onClick={() => setPage((p) => p + 1)}>▶</button>
         </div>
-      ) : (
-        movies.map((movie) => (
-          <div key={movie.id} className="card">
-            <img src={`${POSTER_PATH}${movie.backdrop_path}`} alt="poster" />
-            <h3>{movie.title}</h3>
-            <button onClick={() => moreData(movie)}>View Movie</button>
-          </div>
-        ))
       )}
-    </div>
+    </>
   );
 };
 

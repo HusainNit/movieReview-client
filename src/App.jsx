@@ -10,6 +10,7 @@ import Movies from "./pages/Movies";
 import axios from 'axios'
 import { GetMovies } from "./services/MoviesGetter";
 import { CheckSession } from "./services/Auth";
+import Footer from "./components/Footer";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -41,9 +42,11 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/*" element={<Movies />} />
         </Routes>
       </main>
+
+      <Footer />
     </>
   );
 };
