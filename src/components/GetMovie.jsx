@@ -1,12 +1,15 @@
 import { POSTER_PATH } from "../globals";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Review } from "../services/Review";
 import { useState } from "react";
 
 const GetMovie = ({ movies, unSelect }) => {
   let navigate = useNavigate();
   const { id } = useParams();
-  const movie = movies.find((m) => m.id === Number(id));
+  const location = useLocation();
+
+  // Use movie from navigation state if available, otherwise find in movies prop
+  const movie = location.state?.movie || movies.find((m) => m.id === Number(id));
 
   const [rev, setRev] = useState(false);
   const [like, setLike] = useState(false);
@@ -31,11 +34,16 @@ const GetMovie = ({ movies, unSelect }) => {
         <div className="card alone">
           <div className="up">
             <div className="imgContainer">
-              <img
-                src={`${POSTER_PATH}${movie.backdrop_path}`}
-                alt="poster"
-                className="oneImg"
-              />
+              {movie.backdrop_path ? (
+                // Use /original or /w500 for better quality
+                <img
+                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  alt="poster"
+                  className="oneImg"
+                />
+              ) : (
+                <div className="no-image">No Image Available</div>
+              )}
             </div>
             <div className="info">
               <h1>{movie.title}</h1>

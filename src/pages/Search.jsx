@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { SearchMovie } from "../services/searchMovie";
+import { useNavigate } from "react-router-dom";
 
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w200";
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [results, setResults] = useState([]);
+    const navigate = useNavigate();
 
     const handleSearch = async (e) => {
         e.preventDefault();
@@ -15,7 +17,7 @@ const Search = () => {
 
     return (
         <div>
-            <form>
+            <form className="search-form">
                 <input
                     type="text"
                     placeholder="Search for a movie..."
@@ -28,44 +30,31 @@ const Search = () => {
             </form>
             <div>
                 <h2>Search Results:</h2>
-                <div style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-                    gap: "16px"
-                }}>
-                    {Array.isArray(results) && results.map((movie) => (
-                        <div key={movie.id} style={{
-                            border: "1px solid #ddd",
-                            borderRadius: "8px",
-                            padding: "8px",
-                            background: "#fafafa",
-                            textAlign: "center"
-                        }}>
-                            {movie.poster_path ? (
-                                <img
-                                    src={IMAGE_BASE_URL + movie.poster_path}
-                                    alt={movie.title}
-                                    style={{ width: "100%", borderRadius: "4px", marginBottom: "8px" }}
-                                />
-                            ) : (
-                                <div style={{
-                                    width: "100%",
-                                    height: "270px",
-                                    background: "#eee",
-                                    borderRadius: "4px",
-                                    marginBottom: "8px",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    color: "#888"
-                                }}>
-                                    No Image
-                                </div>
-                            )}
-                            <div style={{ fontWeight: "bold", fontSize: "16px" }}>{movie.title}</div>
-                            <div style={{ fontSize: "14px", color: "#555" }}>{movie.release_date}</div>
-                        </div>
-                    ))}
+                <div className="search-grid">
+                    {Array.isArray(results) && results.length > 0 ? (
+                        results.map((movie) => (
+                            <div
+                                key={movie.id}
+                                className="search-card"
+                                style={{ cursor: "pointer" }}
+                                onClick={() => navigate(`/movies/${movie.id}`, { state: { movie } })}
+                            >
+                                {movie.poster_path ? (
+                                    <img
+                                        src={IMAGE_BASE_URL + movie.poster_path}
+                                        alt={movie.title}
+                                        className="search-poster"
+                                    />
+                                ) : (
+                                    <div className="no-image">No Image</div>
+                                )}
+                                <div className="movie-title">{movie.title}</div>
+                                <div className="movie-date">{movie.release_date}</div>
+                            </div>
+                        ))
+                    ) : (
+                        <div className="no-results">No results found.</div>
+                    )}
                 </div>
             </div>
         </div>
