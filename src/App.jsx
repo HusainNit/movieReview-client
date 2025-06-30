@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import Search from "./pages/Search";
 import Nav from "./components/Nav";
 import Movies from "./pages/Movies";
 import { GetMovies } from "./services/MoviesGetter";
@@ -42,6 +43,9 @@ const App = () => {
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/movies/*" element={<Movies />} />
+          <Route path="/search/*" element={<Search />} />
+
+
         </Routes>
       </main>
 
