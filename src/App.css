@@ -7,7 +7,6 @@ header {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* padding: 20px 0; */
   background-color: #424242;
   position: sticky;
   top: 0;
@@ -50,6 +49,118 @@ button:hover {
   background-color: #1e88e5;
 }
 
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: 1e88e5;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: 30px;
+  font-size: 3rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.hero p {
+  margin-bottom: 50px;
+  font-size: 1.2rem;
+}
+
+.hero button {
+  margin-bottom: 215px;
+}
+
+.animated-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.animated-bg span {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: #1e88e5;
+  border-radius: 50%;
+  animation: float 8s linear infinite;
+}
+
+.animated-bg span:nth-child(1) {
+  top: 10%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.animated-bg span:nth-child(2) {
+  top: 50%;
+  left: 70%;
+  animation-delay: 3s;
+}
+
+.animated-bg span:nth-child(3) {
+  top: 80%;
+  left: 30%;
+  animation-delay: 6s;
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0% {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+  50% {
+    transform: scale(1.2) translateY(-40px) translateX(30px);
+  }
+  100% {
+    transform: scale(1) translateY(0) translateX(0);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer {
+  background: #111;
+  color: #eee;
+  padding: 40px 20px;
+  font-size: 0.9rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-links a,
+.footer-socials a {
+  color: #aaa;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.footer-links a:hover,
+.footer-socials a:hover {
+  color: #1e88e5; 
+}
+
+.footer-bottom {
+  margin-top: 30px;
+  text-align: center;
+  border-top: 1px solid #333;
+  padding-top: 20px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -84,7 +195,6 @@ button:hover {
 }
 
 .details .content {
-  /* padding: 1em 0; */
   text-align: center;
 }
 
@@ -109,20 +219,6 @@ button:hover {
   height: 100%;
   object-fit: cover;
 }
-
-/* .alone {
-  width: 100%;
-  padding-bottom: 200px;
-  margin: 20px 0;
-  border-radius: 4px;
-  box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.7);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  justify-content: left;
-  background-color: #424242;
-} */
 
 .alone {
   background-color: #424242;
@@ -262,35 +358,6 @@ input::placeholder {
   z-index: 2;
 }
 
-/* 
-.userFunctions {
-  flex: 0 0 100%;
-  width: 200px; /* or whatever width you want */
-/* margin-top: 20px; optional spacing */
-/* } */
-/*  
-.comment {
-  flex: 0 0 250px; /* or however wide you want */
-/* margin-top: 20px; optional spacing */
-/* } */
-
-/* .comment {
-  flex: 2;
-  margin: 0 20px 0 20px;
-}
-
-.userFunctions {
-  display: flex;
-  margin: 0 0 0 20px;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.func {
-  margin-bottom: 20px;
-} */
-
 hr {
   background-color: white;
   margin-right: 20px;
@@ -381,6 +448,75 @@ footer {
   text-align: center;
 }
 
+.signin,
+.register {
+  width: 500px;
+  padding: 20px 70px 70px 70px;
+
+  margin: 20px auto;
+  border-radius: 5px;
+  background-color: #424242;
+}
+
+.signin {
+  margin-bottom: 100px;
+}
+
+.signInLable,
+.registerLable {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.btnLoginC,
+.RegbtnC {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.btnlogin,
+.Regbtn {
+  padding: 20px 30px;
+}
+
+.linkRegC,
+.linkLoginC {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.labsign {
+  color: white;
+}
+
+.linkReg {
+  text-decoration: underline;
+}
+
+.titleFiled {
+  display: block;
+  color: white;
+  margin: 5px 20px;
+  font-size: 1.4rem;
+}
+
+.emaillogin,
+.nameReg,
+.emailReg,
+.passReg {
+  margin-bottom: 30px;
+}
+
 @media (max-width: 800px) {
   main {
     margin: 0 20px;
@@ -454,5 +590,17 @@ footer {
 
   .star-rating {
     font-size: 3rem;
+  }
+
+  .signin {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
   }
 }
