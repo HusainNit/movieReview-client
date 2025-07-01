@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
 import { GetMovies } from "../services/MoviesGetter";
-
-import { addFavorite } from '../services/favoriteApi';
-
-
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AllMovies from "../components/AllMovies";
 import GetMovie from "../components/GetMovie";
 
-
-const Movies = () => {
+const Movies = ({ user }) => {
   let navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
@@ -17,32 +12,6 @@ const Movies = () => {
   const moreData = (id) => {
     navigate(`/movies/${id}`);
   };
-
-  const unSelect = () => {
-    navigate("/movies");
-  };
-
-  const handleAddToFavorites = async (movie) => {
-    const userId = localStorage.getItem('userId')
-    if (!userId) {
-      alert("Please sign in first to add favorites")
-      return;
-    }
-
-    try {
-      await addFavorite(userId, {
-      movieId: movie.id,
-      movieTitle: movie.title,
-      movieType: movie.genre_ids?.[0] || "Unknown",
-      moviePoster: `${POSTER_PATH}${movie.backdrop_path}` 
-    });
-    alert("Movie added to favorites!");
-    } catch (error) {
-      console.error("Error adding to favorites:", error.message);
-      alert("Failed to add favorite. Maybe it's already added.");
-    }
-
-  }
 
   useEffect(() => {
     const handleMovies = async () => {
@@ -55,16 +24,20 @@ const Movies = () => {
   return (
     <>
       <div className="grid">
-        <Routes>
-          <Route
-            path="/"
-            element={<AllMovies movies={movies} moreData={moreData} />}
-          />
-          <Route
-            path="/:id"
-            element={<GetMovie movies={movies} unSelect={unSelect} />}
-          />
-        </Routes>
+        {movies.length > 18 ? (
+          <Routes>
+            <Route
+              path="/"
+              element={<AllMovies movies={movies} moreData={moreData} />}
+            />
+            <Route
+              path="/:id"
+              element={<GetMovie movies={movies} user={user} />}
+            />
+          </Routes>
+        ) : (
+          <p className="loadingMV">Loading movies...</p>
+        )}
       </div>
       {window.location.pathname === "/movies" && (
         <div className="pagination">
