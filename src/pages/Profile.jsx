@@ -6,15 +6,11 @@ import { useNavigate } from "react-router-dom";
 const Profile = ({ user }) => {
   let navigate = useNavigate();
   const [profData, setProfData] = useState(null);
-  const [myReviews, setMyReviews] = useState([]);
-  const [myFavorites, setMyFavorites] = useState([]);
 
   useEffect(() => {
     const handleProfileData = async () => {
       const data = await ProfileData();
       setProfData(data);
-      setMyReviews(data.reviews);
-      setMyFavorites(data.favorites);
     };
     handleProfileData();
   }, []);
@@ -50,8 +46,20 @@ const Profile = ({ user }) => {
               >
                 Update Profile Image
               </button>
-              <button>My Favorites </button>
-              <button>My Reviews </button>
+              <button
+                onClick={() => {
+                  navigate("/profile/My-Favorites");
+                }}
+              >
+                My Favorites
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/profile/My-Reviews");
+                }}
+              >
+                My Reviews
+              </button>
             </div>
           </>
         ) : (

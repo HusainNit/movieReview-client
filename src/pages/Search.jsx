@@ -11,60 +11,59 @@ const Search = ({ user }) => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    if (!searchTerm.trim()) return;
     const data = await SearchMovie({ searchTerm });
-    setResults(data);
+    setResults(data || []);
   };
 
   return (
-    <div>
+    <div className="search-container">
       {user ? (
         <>
-          <form className="search-form">
+          <form className="search-form" onSubmit={handleSearch}>
             <input
               type="text"
               placeholder="Search for a movie..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              aria-label="Search for a movie"
             />
-            <button type="submit" onClick={handleSearch}>
-              Search
-            </button>
+            <button type="submit">Search</button>
           </form>
-          <div>
-            <h2>Search Results:</h2>
+
+          {results.length > 0 ? (
             <div className="search-grid">
-              {Array.isArray(results) && results.length > 0 ? (
-                results.map((movie) => (
-                  <div
-                    key={movie.id}
-                    className="search-card"
-                    style={{ cursor: "pointer" }}
-                    onClick={() =>
-                      navigate(`/movies/${movie.id}`, { state: { movie } })
-                    }
-                  >
-                    {movie.poster_path ? (
-                      <img
-                        src={IMAGE_BASE_URL + movie.poster_path}
-                        alt={movie.title}
-                        className="search-poster"
-                      />
-                    ) : (
-                      <div className="no-image">No Image</div>
-                    )}
-                    <div className="movie-title">{movie.title}</div>
-                    <div className="movie-date">{movie.release_date}</div>
+              {results.map((movie) => (
+                <div
+                  key={movie.id}
+                  className="search-card"
+                  onClick={() =>
+                    navigate(`/movies/${movie.id}`, { state: { movie } })
+                  }
+                >
+                  {movie.poster_path ? (
+                    <img
+                      src={`${IMAGE_BASE_URL}${movie.poster_path}`}
+                      alt={movie.title}
+                      className="search-poster"
+                    />
+                  ) : (
+                    <div className="no-image">No Image Available</div>
+                  )}
+                  <div className="movie-info">
+                    <h3 className="movie-title">{movie.title}</h3>
+                    <p className="movie-date">{movie.release_date}</p>
                   </div>
-                ))
-              ) : (
-                <div className="no-results">No results found.</div>
-              )}
+                </div>
+              ))}
             </div>
-          </div>
+          ) : (
+            <div className="no-results">No results found.</div>
+          )}
         </>
       ) : (
         <div className="protected">
-          <h3>You must be signed in to do that!</h3>
+          <h3>You must be signed in to search for movies</h3>
           <button onClick={() => navigate("/signin")}>Sign In</button>
         </div>
       )}

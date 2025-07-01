@@ -15,6 +15,9 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import PasswordUpdate from "./pages/PasswordUpdate";
 import ImgUpdate from "./pages/ImgUpdate";
+import MyFavorites from "./pages/MyFavorites";
+import MyReviews from "./pages/MyReviews";
+import MovieReviews from "./pages/MovieReviews";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -48,10 +51,29 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/movies/*" element={<Movies user={user} />} />
 
-          <Route path="/profile/*" element={<Profile user={user}/>} />
-          <Route path="/profile/password-update" element={<PasswordUpdate user={user}/>} />
-          <Route path="/profile/img-update" element={<ImgUpdate user={user}/>} />
+          <Route path="/profile/*" element={<Profile user={user} />} />
+          <Route
+            path="/profile/password-update"
+            element={<PasswordUpdate user={user} />}
+          />
+          <Route
+            path="/profile/img-update"
+            element={<ImgUpdate user={user} />}
+          />
+          <Route
+            path="/profile/My-Favorites"
+            element={<MyFavorites user={user} />}
+          />
 
+          <Route
+            path="/profile/My-Reviews"
+            element={<MyReviews user={user} />}
+          />
+
+            <Route
+            path="/reviews/:id"
+            element={<MovieReviews user={user}/>}
+          />
 
           <Route path="/search/*" element={<Search user={user} />} />
         </Routes>
