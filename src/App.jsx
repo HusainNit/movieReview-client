@@ -7,10 +7,11 @@ import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import Nav from "./components/Nav";
 import Movies from "./pages/Movies";
-import axios from 'axios'
+import axios from "axios";
 import { GetMovies } from "./services/MoviesGetter";
 import { CheckSession } from "./services/Auth";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/movies/*" element={<Movies />} />
+          <Route path="/profile/*" element={<Profile />} />
         </Routes>
       </main>
 

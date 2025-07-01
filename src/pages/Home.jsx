@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 const Home = () => {
   let navigate = useNavigate();
   return (
@@ -14,7 +13,13 @@ const Home = () => {
         <div className="hero-content">
           <h1>Find Your Next Favorite Movie 🎬</h1>
           <p>Browse honest reviews, and rate your favorite films.</p>
-          <button onClick={()=>{navigate("/signin")}}>Explore Now</button>
+          <button
+            onClick={() => {
+              navigate("/signin");
+            }}
+          >
+            Explore Now
+          </button>
         </div>
       </div>
     </div>
