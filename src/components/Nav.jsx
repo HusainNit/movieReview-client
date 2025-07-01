@@ -8,6 +8,8 @@ const Nav = ({ user, handleLogOut }) => {
       <nav>
         <Link to="/movies">Movies</Link>
         <Link to="/profile">Profile</Link>
+        <Link to="/search">Search</Link>
+
 
         <Link onClick={handleLogOut} to="/">
           Sign Out
@@ -21,6 +23,7 @@ const Nav = ({ user, handleLogOut }) => {
       <Link to="/">Home</Link>
       <Link to="/register">Register</Link>
       <Link to="/signin">Sign In</Link>
+      <Link to="/search">Search</Link>
     </nav>
   );
 
