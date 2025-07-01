@@ -34,12 +34,14 @@ const GetMovie = ({ movies, unSelect }) => {
     if (res?.data?.success) {
       setPopup({
         text: "Review submitted successfully!",
-        route: "ok",
+        status:"ok",
+        route: "/movies",
       });
     } else {
       setPopup({
         text: "Something went wrong while submitting the review.",
         route: "fail",
+        status:"/movies",
       });
     }
   };
@@ -237,7 +239,7 @@ const GetMovie = ({ movies, unSelect }) => {
           </div>
         </div>
       )}
-      {popup && <CustemPopUp text={popup.text} route={popup.route}  onClose={handleClosePopup}/>}
+      {popup && <CustemPopUp text={popup.text} route={popup.route}  onClose={handleClosePopup} status={popup.status}/>}
     </>
   );
 };

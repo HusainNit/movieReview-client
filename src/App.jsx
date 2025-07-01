@@ -13,6 +13,7 @@ import { GetMovies } from "./services/MoviesGetter";
 import { CheckSession } from "./services/Auth";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import PasswordUpdate from "./pages/PasswordUpdate";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/movies/*" element={<Movies />} />
 
           <Route path="/profile/*" element={<Profile />} />
+          <Route path="/profile/password-update" element={<PasswordUpdate/>} />
 
           <Route path="/search/*" element={<Search />} />
         </Routes>

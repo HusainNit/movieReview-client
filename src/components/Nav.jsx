@@ -7,9 +7,9 @@ const Nav = ({ user, handleLogOut }) => {
     userOptions = (
       <nav>
         <Link to="/movies">Movies</Link>
-        <Link to="/profile">Profile</Link>
         <Link to="/search">Search</Link>
 
+        <Link to="/profile">Profile</Link>
 
         <Link onClick={handleLogOut} to="/">
           Sign Out

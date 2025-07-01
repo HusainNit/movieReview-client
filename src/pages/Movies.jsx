@@ -3,11 +3,9 @@ import { GetMovies } from "../services/MoviesGetter";
 
 // import { addFavorite } from '../services/favoriteApi';
 
-
 import { Route, Routes, useNavigate } from "react-router-dom";
 import AllMovies from "../components/AllMovies";
 import GetMovie from "../components/GetMovie";
-
 
 const Movies = () => {
   let navigate = useNavigate();
@@ -34,7 +32,7 @@ const Movies = () => {
   //     movieId: movie.id,
   //     movieTitle: movie.title,
   //     movieType: movie.genre_ids?.[0] || "Unknown",
-  //     moviePoster: `${POSTER_PATH}${movie.backdrop_path}` 
+  //     moviePoster: `${POSTER_PATH}${movie.backdrop_path}`
   //   });
   //   alert("Movie added to favorites!");
   //   } catch (error) {
@@ -55,16 +53,20 @@ const Movies = () => {
   return (
     <>
       <div className="grid">
-        <Routes>
-          <Route
-            path="/"
-            element={<AllMovies movies={movies} moreData={moreData} />}
-          />
-          <Route
-            path="/:id"
-            element={<GetMovie movies={movies} unSelect={unSelect} />}
-          />
-        </Routes>
+        {movies.length >18 ? (
+          <Routes>
+            <Route
+              path="/"
+              element={<AllMovies movies={movies} moreData={moreData} />}
+            />
+            <Route
+              path="/:id"
+              element={<GetMovie movies={movies} unSelect={unSelect} />}
+            />
+          </Routes>
+        ) : (
+          <p className="loadingMV">Loading movies...</p>
+        )}
       </div>
       {window.location.pathname === "/movies" && (
         <div className="pagination">
