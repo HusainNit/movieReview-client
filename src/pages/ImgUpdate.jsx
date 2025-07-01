@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { PasswordUpdateAuth } from "../services/Auth";
+import { imgData } from "../services/profile";
+
 import CustemPopUp from "../components/CustemPopUp";
 
-const PasswordUpdate = ({ user }) => {
+const ImgUpdate = ({ user }) => {
   const [popup, setPopup] = useState(null);
 
-  const initialState = { password: "", oldpassword: "" };
+  const initialState = { imgpath: "" };
 
   const [formValues, setFormValues] = useState(initialState);
 
@@ -15,18 +16,18 @@ const PasswordUpdate = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await PasswordUpdateAuth(formValues);
+    const res = await imgData(formValues);
     setFormValues(initialState);
 
     if (res?.success) {
       setPopup({
-        text: "password updated successfully!",
+        text: "image updated successfully!",
         status: "ok",
         route: "/profile",
       });
     } else {
       setPopup({
-        text: "Something went wrong while submitting the passwordUpdate.",
+        text: "Something went wrong while submitting the image path.",
         route: "fail",
         status: "/profile",
       });
@@ -47,37 +48,21 @@ const PasswordUpdate = ({ user }) => {
 
           <form className="col" id="col" onSubmit={handleSubmit}>
             <div className="input-wrapper">
-              <label htmlFor="oldpassword" className="titleFiled">
-                OldPassword
+              <label htmlFor="imgpath" className="titleFiled">
+                Image URL
               </label>
               <input
                 onChange={handleChange}
-                type="password"
-                id="oldpassword"
-                value={formValues.oldpassword}
-                required
-                className="passLogin"
-              />
-            </div>
-            <div className="input-wrapper">
-              <label htmlFor="password" className="titleFiled">
-                Password
-              </label>
-              <input
-                onChange={handleChange}
-                type="password"
-                id="password"
+                type="String"
+                id="imgpath"
                 value={formValues.password}
                 required
                 className="passLogin"
               />
             </div>
             <div className="btnLoginC">
-              <button
-                className="btnlogin"
-                disabled={!formValues.oldpassword || !formValues.password}
-              >
-                Update Password
+              <button className="btnlogin" disabled={!formValues.imgpath}>
+                Update Image
               </button>
             </div>
           </form>
@@ -100,4 +85,4 @@ const PasswordUpdate = ({ user }) => {
   );
 };
 
-export default PasswordUpdate;
+export default ImgUpdate;

@@ -15,7 +15,7 @@ const Home = () => {
           <p>Browse honest reviews, and rate your favorite films.</p>
           <button
             onClick={() => {
-              navigate("/signin");
+              navigate("/movies");
             }}
           >
             Explore Now

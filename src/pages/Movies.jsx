@@ -7,17 +7,13 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import AllMovies from "../components/AllMovies";
 import GetMovie from "../components/GetMovie";
 
-const Movies = () => {
+const Movies = ({ user }) => {
   let navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
 
   const moreData = (id) => {
     navigate(`/movies/${id}`);
-  };
-
-  const unSelect = () => {
-    navigate("/movies");
   };
 
   // const handleAddToFavorites = async (movie) => {
@@ -53,7 +49,7 @@ const Movies = () => {
   return (
     <>
       <div className="grid">
-        {movies.length >18 ? (
+        {movies.length > 18 ? (
           <Routes>
             <Route
               path="/"
@@ -61,7 +57,7 @@ const Movies = () => {
             />
             <Route
               path="/:id"
-              element={<GetMovie movies={movies} unSelect={unSelect} />}
+              element={<GetMovie movies={movies} user={user} />}
             />
           </Routes>
         ) : (

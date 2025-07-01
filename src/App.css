@@ -563,6 +563,14 @@ footer {
   align-items: center;
 }
 
+.protected {
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .profileContainer {
   width: 500px;
   padding: 20px 70px 20px 70px;

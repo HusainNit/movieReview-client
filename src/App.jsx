@@ -14,6 +14,7 @@ import { CheckSession } from "./services/Auth";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import PasswordUpdate from "./pages/PasswordUpdate";
+import ImgUpdate from "./pages/ImgUpdate";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -45,12 +46,14 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/movies/*" element={<Movies />} />
+          <Route path="/movies/*" element={<Movies user={user} />} />
 
-          <Route path="/profile/*" element={<Profile />} />
-          <Route path="/profile/password-update" element={<PasswordUpdate/>} />
+          <Route path="/profile/*" element={<Profile user={user}/>} />
+          <Route path="/profile/password-update" element={<PasswordUpdate user={user}/>} />
+          <Route path="/profile/img-update" element={<ImgUpdate user={user}/>} />
 
-          <Route path="/search/*" element={<Search />} />
+
+          <Route path="/search/*" element={<Search user={user} />} />
         </Routes>
       </main>
 
