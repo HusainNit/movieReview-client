@@ -2,10 +2,12 @@ import { POSTER_PATH } from "../globals";
 import { useNavigate, useParams } from "react-router-dom";
 import { Review } from "../services/Review";
 import { useState } from "react";
+import CustemPopUp from "../components/CustemPopUp";
 
 const GetMovie = ({ movies, unSelect }) => {
   let navigate = useNavigate();
   const { id } = useParams();
+
   const movie = movies.find((m) => m.id === Number(id));
 
   const [rev, setRev] = useState(false);
@@ -14,6 +16,8 @@ const GetMovie = ({ movies, unSelect }) => {
   const [favorite, setFavorite] = useState(false);
   const [rating, setRating] = useState(null);
   const [comment, setComment] = useState("");
+
+  const [popup, setPopup] = useState(null);
 
   const toggleLike = () => {
     setLike(!like);
@@ -25,17 +29,40 @@ const GetMovie = ({ movies, unSelect }) => {
     if (!dislike && like) setLike(false);
   };
 
+  const handleReview = async (formData) => {
+    const res = await Review(formData);
+    if (res?.data?.success) {
+      setPopup({
+        text: "Review submitted successfully!",
+        route: "ok",
+      });
+    } else {
+      setPopup({
+        text: "Something went wrong while submitting the review.",
+        route: "fail",
+      });
+    }
+  };
+
+  const handleClosePopup = () => {
+    setPopup(null);
+  };
+
   return (
     <>
       {movie && (
         <div className="card alone">
           <div className="up">
             <div className="imgContainer">
-              <img
-                src={`${POSTER_PATH}${movie.backdrop_path}`}
-                alt="poster"
-                className="oneImg"
-              />
+              {movie.backdrop_path ? (
+                <img
+                  src={`${POSTER_PATH}${movie.backdrop_path}`}
+                  alt="poster"
+                  className="oneImg"
+                />
+              ) : (
+                <div className="no-image">No Image Available</div>
+              )}
             </div>
             <div className="info">
               <h1>{movie.title}</h1>
@@ -191,7 +218,7 @@ const GetMovie = ({ movies, unSelect }) => {
                     <button
                       className="func"
                       onClick={() => {
-                        Review({
+                        handleReview({
                           movieId: id,
                           like: like,
                           dislike: dislike,
@@ -210,6 +237,7 @@ const GetMovie = ({ movies, unSelect }) => {
           </div>
         </div>
       )}
+      {popup && <CustemPopUp text={popup.text} route={popup.route}  onClose={handleClosePopup}/>}
     </>
   );
 };

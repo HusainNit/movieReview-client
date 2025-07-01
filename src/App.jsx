@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import Search from "./pages/Search";
 import Nav from "./components/Nav";
 import Movies from "./pages/Movies";
 import axios from "axios";
@@ -44,7 +45,10 @@ const App = () => {
           <Route path="/signin" element={<SignIn setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/movies/*" element={<Movies />} />
+
           <Route path="/profile/*" element={<Profile />} />
+
+          <Route path="/search/*" element={<Search />} />
         </Routes>
       </main>
 

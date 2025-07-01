@@ -1,10 +1,16 @@
-const CustemPopUp = ({ text, route }) => {
+import { Link } from "react-router-dom";
+
+const CustemPopUp = ({ text, route, onClose }) => {
   return (
     <div className="popUp">
       <div className="content">
-        <h1>popup</h1>
+        <h1>{text}</h1>
         <div className="action">
-          <h3>action</h3>
+          {route === "ok" ? (
+            <Link to="/movies">Go to Movies</Link>
+          ) : (
+            <button onClick={() => onClose()}>Close</button>
+          )}
         </div>
       </div>
     </div>
