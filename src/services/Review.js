@@ -12,8 +12,8 @@ export const Review = async (obj) => {
 
 export const fetchReviews = async () => {
   try {
-    const res = await Client.get("/review/my-reviews");
-
+    const res = await Client.get("/review/all-reviews");
+console.log("Reviews fetched:", res.data);
     return res.data;
   } catch (error) {
     console.error("Error in Review fetch:", error);
