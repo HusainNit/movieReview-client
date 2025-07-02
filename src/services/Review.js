@@ -12,7 +12,7 @@ export const Review = async (obj) => {
 
 export const fetchReviews = async () => {
   try {
-    const res = await Client.get("/review/all-reviews");
+    const res = await Client.get("/review/my-reviews");
 console.log("Reviews fetched:", res.data);
     return res.data;
   } catch (error) {
