@@ -104,6 +104,8 @@ full-stack web application built with the MERN stack (MongoDB, Express.js, React
      - add `MONGODB_URI`
      - add `SALT_ROUNDS`
      - add `APP_SECRET`
+     - add `TMDB_API_KEY`
+     - add ` TMDB_URL`
      - optional, add `PORT` which in define you need to change client port. default port in server and client is `3000`
    - Start the server: `npm start`
 
