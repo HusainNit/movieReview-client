@@ -6,6 +6,21 @@
 
 full-stack web application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It enables users to securely register, authenticate, and explore movie reviews powered by the TMDB API. The app features responsive, mobile-first design with animated transitions for an immersive user experience. Users can browse popular films, post and manage personal reviews, and access user-specific features protected by JWT-based authentication. MongoDB handles CRUD operations for users and reviews, ensuring fast and scalable performance across devices.
 
+##  Table of Contents:
+
+- [Deployed link](#deployed-link)
+- [Planning Materials](#planning-materials)
+    - [Entity Relationship Diagram (ERD)](#erd)
+    - [WireFrame](#wireframe)
+    - [UserStory](#userstory)
+    - [Component Hierarchy Diagram (CHD)](#component-hierarchy-diagrams)
+- [ScreenShots](#screenshots)
+- [Recording](#recording)
+- [How to run locally](#how-to-run-locally)
+- [Technologies Used](#technologies-used)
+- [Future Enhancements](#future-enhancements)
+
+
 ## Deployed link:
 
 [link ]()  still not done
@@ -14,7 +29,7 @@ full-stack web application built with the MERN stack (MongoDB, Express.js, React
 
 ## Planning Materials:
 
-### ERD:
+### Entity Relationship Diagram (ERD):
 
 <p align="center"><img alt="Logo" src="./public/images/ERD.png"/></p>
 
@@ -40,7 +55,7 @@ full-stack web application built with the MERN stack (MongoDB, Express.js, React
 
 - As a user, I want to ensure my personal content and routes are protected using authentication so that only I can access my reviews.
 
-### Component Hierarchy Diagrams:
+### Component Hierarchy Diagrams (CHD):
 
 <p align="center"><img alt="Logo" src="./public/images/Component Hierarchy Diagrams.png"/></p>
 
