@@ -104,6 +104,8 @@ full-stack web application built with the MERN stack (MongoDB, Express.js, React
      - add `MONGODB_URI`
      - add `SALT_ROUNDS`
      - add `APP_SECRET`
+     - add `TMDB_API_KEY`
+     - add ` TMDB_URL`
      - optional, add `PORT` which in define you need to change client port. default port in server and client is `3000`
    - Start the server: `npm start`
 
@@ -150,3 +152,5 @@ Open the application in your browser at `http://localhost:5173`
 2. Search results one page info.
 3. Admin Interface.
 4. custom nav for phone view, nav at bottom.
+5. password rules to create and Ui indications
+5. error catching and show user in signin and register
