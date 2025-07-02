@@ -152,3 +152,5 @@ Open the application in your browser at `http://localhost:5173`
 2. Search results one page info.
 3. Admin Interface.
 4. custom nav for phone view, nav at bottom.
+5. password rules to create and Ui indications
+5. error catching and show user in signin and register
