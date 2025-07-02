@@ -12,6 +12,10 @@ const MovieReviews = ({ user }) => {
         const data = await getReviewsForMovie(id);
                     {console.log(data)}
 
+
+
+
+
         setReviews(data);
       } catch (err) {
         console.error("Failed to load reviews:", err);
