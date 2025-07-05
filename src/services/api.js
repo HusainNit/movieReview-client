@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://moviereview-l9b1.onrender.com";
 
 const Client = Axios.create({ baseURL: BASE_URL });
 

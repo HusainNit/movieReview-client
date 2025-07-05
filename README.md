@@ -6,24 +6,23 @@
 
 full-stack web application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). It enables users to securely register, authenticate, and explore movie reviews powered by the TMDB API. The app features responsive, mobile-first design with animated transitions for an immersive user experience. Users can browse popular films, post and manage personal reviews, and access user-specific features protected by JWT-based authentication. MongoDB handles CRUD operations for users and reviews, ensuring fast and scalable performance across devices.
 
-##  Table of Contents:
+## Table of Contents:
 
 - [Deployed link](#deployed-link)
 - [Planning Materials](#planning-materials)
-    - [Entity Relationship Diagram (ERD)](#erd)
-    - [WireFrame](#wireframe)
-    - [UserStory](#userstory)
-    - [Component Hierarchy Diagram (CHD)](#component-hierarchy-diagrams)
+  - [Entity Relationship Diagram (ERD)](#entity-relationship-diagram-erd)
+  - [WireFrame](#wireframe)
+  - [UserStory](#userstory)
+  - [Component Hierarchy Diagram (CHD)](#component-hierarchy-diagrams-chd)
 - [ScreenShots](#screenshots)
 - [Recording](#recording)
 - [How to run locally](#how-to-run-locally)
 - [Technologies Used](#technologies-used)
 - [Future Enhancements](#future-enhancements)
 
-
 ## Deployed link:
 
-[link ]()  still not done
+[link ]() still not done
 
 <br>
 
@@ -95,6 +94,8 @@ full-stack web application built with the MERN stack (MongoDB, Express.js, React
    - Install dependencies: `npm i`
    - at `/src/service/api.js`
      - change `BASE_URL` to `BASE_URL = "http://localhost:3000"`
+   - at `globals.js`
+     - change `BASE_URL` to `BASE_URL = "http://localhost:3000"`
    - Start the client: `npm run dev`
 
 2. Server Repo: [link](https://github.com/HusainNit/movieReview-server)
@@ -153,4 +154,4 @@ Open the application in your browser at `http://localhost:5173`
 3. Admin Interface.
 4. custom nav for phone view, nav at bottom.
 5. password rules to create and Ui indications
-5. error catching and show user in signin and register
+6. error catching and show user in signin and register
