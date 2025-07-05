@@ -28,7 +28,7 @@ const MovieReviews = ({ user }) => {
         reviews.map((review) => (
           <div key={review._id} className="reviewItem">
             <p>
-              <strong>User:</strong> {review.userId?.username || "Anonymous"}
+              <strong>User:</strong> {review.userId?.name || "Anonymous"}
             </p>
             <p>
               <strong>Rating:</strong> ⭐ {review.rating}
