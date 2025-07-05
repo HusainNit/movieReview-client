@@ -22,7 +22,7 @@ full-stack web application built with the MERN stack (MongoDB, Express.js, React
 
 ## Deployed link:
 
-[link ]() still not done
+https://moviereview.surge.sh/
 
 <br>
 
